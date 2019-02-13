@@ -11,9 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    -# @movies = Movie.all
-    @movies = Movie.sort
-    
+    @movies = Movie.all
   end
 
   def new
