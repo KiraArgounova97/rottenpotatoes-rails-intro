@@ -11,16 +11,12 @@ class MoviesController < ApplicationController
   end
 
   def index
-    # @movies = Movie.all
-    # @movies = Movie.order(params[:sort_by])
-    # Sorted movie list 
-    #@sort_column = params[:sort_by]
-    
-    # Part1: Color  yellow/sort column =========================
+    # Part1: Color  yellow/sort the column =========================
     @movies = Movie.order(params[:sort_by])
-    if params[:sort_by] == 'title' 
+    @sort_col = params[:sort_by]
+    if sort_col == 'title' 
       @title_header = 'hilite'
-    elsif params[:sort_by] == 'release_date'
+    elsif sort_col == 'release_date'
       @release_date_header = 'hilite'
     end
   end
