@@ -11,6 +11,9 @@ class MoviesController < ApplicationController
   end
 
   def index
+    # Part2: Filter the list of the movies ===========================
+    @all_ratings = Movie.all_ratings
+    
     # Part1: Sort the column/highlight yellow =========================
    @movies = Movie.all 
    if params[:sort_by] == 'title'
