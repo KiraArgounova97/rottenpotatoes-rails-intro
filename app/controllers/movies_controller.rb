@@ -20,11 +20,9 @@ class MoviesController < ApplicationController
     @movies = Movie.order(params[:sort_by])
     if params[:sort_by] == 'title' 
       @title_header = 'hilite'
-    if params[:sort_by] == 'release_date'
+    elsif params[:sort_by] == 'release_date'
       @release_date_header = 'hilite'
     end
-end
-    
   end
 
   def new
