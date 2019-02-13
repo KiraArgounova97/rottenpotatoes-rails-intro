@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   def index
     # Part1: Sort the column/highlight yellow =========================
     # @movies = Movie.order(title: :asc)
-    @movies = Movie.order(release_date: asc)
+    @movies = Movie.order(release_date: :asc)
   end
 
   def new
