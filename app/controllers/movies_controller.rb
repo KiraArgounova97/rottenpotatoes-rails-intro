@@ -17,7 +17,7 @@ class MoviesController < ApplicationController
     #@sort_column = params[:sort_by]
   
     @movies = Movie.order(param.sort_by)
-    @sort_column 
+    @sort_column  = params.sort_by
   
   end
 
