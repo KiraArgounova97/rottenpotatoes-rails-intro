@@ -34,9 +34,13 @@ class MoviesController < ApplicationController
     else
       @ratings = nil
     end
+    
+    @ratings.keys
+    
+    
 
-  
   end
+
 
 # ====================================================================
 
