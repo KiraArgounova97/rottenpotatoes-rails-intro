@@ -37,10 +37,6 @@ class MoviesController < ApplicationController
       @checked_ratings = []
     end
     
-    
-    
-    
-    
   end
 
 
