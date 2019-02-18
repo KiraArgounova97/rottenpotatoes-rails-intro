@@ -12,12 +12,11 @@ class MoviesController < ApplicationController
 
   
   # ===================================================================
-  
   def index   
     @movies = Movie.all  
     @all_ratings = Movie.all_ratings
     
-    # Part1: Sort the column/highlight yellow =========================
+  # Part1: Sort the column/highlight yellow =========================
    if params[:sort_by] == 'title'
     @title_header = 'hilite'
     @movies = Movie.order(title: :asc)
