@@ -28,6 +28,10 @@ class MoviesController < ApplicationController
     # Part2: Filter the list of the movies ===========================
     @all_ratings = Movie.all_ratings
     
+    if params[:ratings]
+      @movies = Movie.where(rating: params[:ratings].keys)
+    else
+    
     # 'ratings': Aggregate the values into a single hash
     if params[:ratings]
       @movies = Movie.where(rating: params[:ratings].keys)
