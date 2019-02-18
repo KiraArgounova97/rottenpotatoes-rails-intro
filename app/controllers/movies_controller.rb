@@ -35,6 +35,7 @@ class MoviesController < ApplicationController
       @ratings = nil
     end
 
+  
   end
 
 # ====================================================================
