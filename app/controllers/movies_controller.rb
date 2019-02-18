@@ -34,7 +34,7 @@ class MoviesController < ApplicationController
       @checked_ratings = params[:ratings].keys
     else
       @movies = Movie.all
-      @checked_ratings = nil 
+      @checked_ratings = []
     end
     
     
