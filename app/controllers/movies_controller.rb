@@ -26,7 +26,7 @@ class MoviesController < ApplicationController
    end
    
     # Part2: Filter the list of the movies ===========================
-    @all_ratings = Movie.find_all(:rating)
+    @all_ratings = Movie.find(:rating).all
     
     # Aggregate the values into a single hash called 'ratings'
     if params[:rating] == nil 
