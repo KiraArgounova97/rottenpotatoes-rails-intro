@@ -15,7 +15,6 @@ class MoviesController < ApplicationController
   
   def index   
     @movies = Movie.all 
-    @all_ratings = Movie.all_ratings
     
     # Part1: Sort the column/highlight yellow =========================
    if params[:sort_by] == 'title'
@@ -24,16 +23,24 @@ class MoviesController < ApplicationController
    elsif params[:sort_by] == 'release_date'
     @release_date_header = 'hilite'
     @movies = Movie.order(release_date: :asc)
-   elsif params[:ratings]
-    @movies = Movie.where(:rating => params[:ratings].keys)
-   else
-    @movies = Movie.all
    end
+   
+    # Part2: Filter the list of the movies ===========================
+    @all_ratings = Movie.all_ratings
   
-  
+    # 'ratings': Aggregate the values into a single hash
+    if params[:ratings]
+      @movies = Movie.where(:rating => params[:ratings].keys)
+    else
+      # params[:ratings] == nil
+      @movies = Movie.all
+    end
+    
+    
+    
+    
+    
   end
- 
- 
 
 
 # ====================================================================
