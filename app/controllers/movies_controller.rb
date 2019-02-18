@@ -34,7 +34,8 @@ class MoviesController < ApplicationController
       @ratings = nil
     end
     
-    @ratings.keys
+    
+    
   end
 
 
