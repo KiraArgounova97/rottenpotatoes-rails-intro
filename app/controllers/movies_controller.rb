@@ -32,12 +32,9 @@ class MoviesController < ApplicationController
     if params[:rating]
       @ratings = params[:rating]
     else
-      @ratings = nil 
-  
-  
+      @ratings = nil
+    end
 
-
-   
   end
 
 # ====================================================================
