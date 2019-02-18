@@ -24,20 +24,43 @@ class MoviesController < ApplicationController
    elsif params[:sort_by] == 'release_date'
     @release_date_header = 'hilite'
     @movies = Movie.order(release_date: :asc)
-   else
-      # Part2: Filter the list of the movies ===========================
-      # 'ratings': Aggregate the values into a single hash
-      if params[:ratings]
-        @movies = Movie.where(:rating => params[:ratings].keys)
-        @checked_ratings = params[:ratings].keys
-      else
-        @movies = Movie.all
-        @checked_ratings = []
-      end
    end
+
+    # Part2: Filter the list of the movies ===========================
+    # 'ratings': Aggregate the values into a single hash
+    if params[:ratings]
+      @movies = Movie.where(:rating => params[:ratings].keys)
+      @checked_ratings = params[:ratings].keys
+      
+      if params[:sort_by] == 'title'
+        @title_header = 'hilite'
+        @movies = Movie.order(title: :asc)
+      elsif params[:sort_by] == 'release_date'
+        @release_date_header = 'hilite'
+        @movies = Movie.order(release_date: :asc)
+      end
+
+    else
+      @movies = Movie.all
+      @checked_ratings = []
+
+      if params[:sort_by] == 'title'
+        @title_header = 'hilite'
+        @movies = Movie.order(title: :asc)
+      elsif params[:sort_by] == 'release_date'
+        @release_date_header = 'hilite'
+        @movies = Movie.order(release_date: :asc)
+      end
+
+    end
+      
+      
+      
+      
+      
+      
+      
   end
-
-
 # ====================================================================
 
   def new
