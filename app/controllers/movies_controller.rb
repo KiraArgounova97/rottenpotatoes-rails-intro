@@ -28,10 +28,7 @@ class MoviesController < ApplicationController
     # Part2: Filter the list of the movies ===========================
     @all_ratings = Movie.all_ratings
     
-    
-    if params[:commit] == 'Refresh' 
-      @movies = Movie.order(release_date: :asc)
-    end
+  
 
 
    
