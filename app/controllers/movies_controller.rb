@@ -31,7 +31,7 @@ class MoviesController < ApplicationController
     # 'ratings': Aggregate the values into a single hash
     if params[:ratings]
       @movies = Movie.where(:rating => params[:ratings].keys)
-      @ratings = prams[:ratings]
+      @ratings = params[:ratings]
     else
       @movies = Movie.all
       @ratings = nil 
