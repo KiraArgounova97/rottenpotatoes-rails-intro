@@ -10,12 +10,13 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
 
-  def index
-    # Part2: Filter the list of the movies ===========================
-    @all_ratings = Movie.all_ratings
+  
+  # ===================================================================
+  
+  def index   
+    @movies = Movie.all 
     
     # Part1: Sort the column/highlight yellow =========================
-   @movies = Movie.all 
    if params[:sort_by] == 'title'
     @title_header = 'hilite'
     @movies = Movie.order(title: :asc)
@@ -23,7 +24,20 @@ class MoviesController < ApplicationController
     @release_date_header = 'hilite'
     @movies = Movie.order(release_date: :asc)
    end
+   
+    # Part2: Filter the list of the movies ===========================
+    @all_ratings = Movie.all_ratings
+    
+    
+    if params[:commit] == 'Refresh' 
+      @movies = Movie.order(release_date: :asc)
+    end
+
+
+   
   end
+
+# ====================================================================
 
   def new
     # default: render 'new' template
