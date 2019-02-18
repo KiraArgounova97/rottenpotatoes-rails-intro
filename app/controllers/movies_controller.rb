@@ -25,7 +25,7 @@ class MoviesController < ApplicationController
     @release_date_header = 'hilite'
     @movies = Movie.order(release_date: :asc)
    elsif params[:ratings]
-    @movies = Movie.where(rating: params[:ratings].keys)
+    @movies = Movie.where(:rating => params[:ratings].keys)
    else
     @movies = Movie.all
    end
