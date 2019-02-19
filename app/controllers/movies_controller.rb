@@ -55,7 +55,7 @@ class MoviesController < ApplicationController
     elsif @sorting
       # 2. Only sort 
       if @sorting == 'title'
-        @title = 'hilite'
+        @title_header = 'hilite'
         @movies = Movie.order
       end
       
