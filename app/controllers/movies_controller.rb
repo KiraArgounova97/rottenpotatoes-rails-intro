@@ -24,7 +24,7 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
     redirect = false 
 
-    # clear up
+    # clear up============================================================
     # (1) Sorting 
     if params[:sort_by] 
       @sorting = params[sort_by]
@@ -45,6 +45,13 @@ class MoviesController < ApplicationController
       @checked_ratings = []
     end
       
+    if redirect 
+      redirect_to movies_path(:sort_by => @sorting, :ratings => @ratings)
+    end
+
+
+
+
 
 
 
