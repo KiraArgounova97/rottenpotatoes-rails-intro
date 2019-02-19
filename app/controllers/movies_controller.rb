@@ -19,15 +19,13 @@ class MoviesController < ApplicationController
   # Part3: Remember the settings ====================================
   
   # 'ratings': Aggregate the values into a single hash
-  
-    @movies = Movie.all  
     @all_ratings = Movie.all_ratings
     redirect = false 
 
     # clear up============================================================
     # (1) Sorting 
     if params[:sort_by] 
-      @sorting = params[sort_by]
+      @sorting = params[:sort_by]
     elsif session[:sort_by]
       @sorting = session[:sort_by]
       redirect = true 
@@ -49,10 +47,32 @@ class MoviesController < ApplicationController
       redirect_to movies_path(:sort_by => @sorting, :ratings => @ratings)
     end
 
+    # Checked movies/Sort by title 
+    if @sorting and @rating
+      @movie = Movie.all 
+    elsif @sorting
+      # Only sort 
+      if @sorting == 'title'
+        @tile_header = 'hilite'
+        @movies = Movie.order(title: :asc)
+      end
+
+    elsif @rating
+      # Only select checkboxed movies 
+      @movies = Movie.where(:rating => params[:ratings].keys)
+    else 
+      # Otherwise 
+      @movie = Movie.all 
+    
+    end
+      
+      
+      
 
 
 
 
+    
   if params[:ratings]
     @movies = Movie.where(:rating => params[:ratings].keys)
     @checked_ratings = params[:ratings].keys
