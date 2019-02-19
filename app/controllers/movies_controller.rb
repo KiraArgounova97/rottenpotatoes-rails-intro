@@ -48,20 +48,14 @@ class MoviesController < ApplicationController
       redirect_to movies_path(:sort_by => @sorting, :ratings => @ratings)
     end
 
-    # Checked movies/Sort by title 
-    if @sorting and @rating
-      # 1. Both sort/rating
-      @movies = Movie.where(:rating => @ratings.keys).find(:all, :order => @sorting)
-    elsif @sorting
-      # 2. Only sort 
-        @movies = Movie.where(:all, :order => @sorting)
-    elsif @rating
+
+    if @rating
       # Only select checkboxed movies 
+      @checked_ratings = @rating
       @movies = Movie.where(:rating => @ratings.keys)
-    else 
-      # Otherwise just display 
-      @movie = Movie.all 
-    end
+    end 
+
+
 
     
   end
