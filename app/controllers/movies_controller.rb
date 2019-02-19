@@ -24,6 +24,7 @@ class MoviesController < ApplicationController
     redirect = false 
 
     # clear up============================================================
+    # Adding sessions
     # (1) Sorting 
     if params[:sort_by] 
       @sorting = params[:sort_by]
@@ -49,7 +50,6 @@ class MoviesController < ApplicationController
       redirect_to movies_path(:sort_by => @sorting, :ratings => @ratings)
     end
 
-  
     if @ratings and @sorting 
       
       # Sort by title 
@@ -92,10 +92,7 @@ class MoviesController < ApplicationController
 
   end
     
-  
-  
-  
-  
+
 # ====================================================================
 
   def new
