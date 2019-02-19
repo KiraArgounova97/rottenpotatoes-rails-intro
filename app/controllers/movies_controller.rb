@@ -54,14 +54,6 @@ class MoviesController < ApplicationController
     
     elsif @sorting
       # 2. Only sort 
-      if @sorting == 'title'
-        @tile_header = 'hilite'
-        @movies = Movie.order(title: :asc)
-      elsif @sorting == 'release_date'
-        @release_date_header = 'hilite'
-        @movies = Movie.order(release_date: :asc)
-      end
-
     elsif @rating
       # Only select checkboxed movies 
       @movies = Movie.where(:rating => params[:ratings].keys)
