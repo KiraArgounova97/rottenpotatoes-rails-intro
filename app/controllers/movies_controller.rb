@@ -49,53 +49,28 @@ class MoviesController < ApplicationController
 
     # Checked movies/Sort by title 
     if @sorting and @rating
+      # 1. Both sort/rating
       @movie = Movie.all 
+    
     elsif @sorting
-      # Only sort 
+      # 2. Only sort 
       if @sorting == 'title'
         @tile_header = 'hilite'
         @movies = Movie.order(title: :asc)
+      elsif @sorting == 'release_date'
+        @release_date_header = 'hilite'
+        @movies = Movie.order(release_date: :asc)
       end
 
     elsif @rating
       # Only select checkboxed movies 
       @movies = Movie.where(:rating => params[:ratings].keys)
     else 
-      # Otherwise 
+      # Otherwise just display 
       @movie = Movie.all 
     
     end
-      
-      
-      
-
-
-
-
     
-  if params[:ratings]
-    @movies = Movie.where(:rating => params[:ratings].keys)
-    @checked_ratings = params[:ratings].keys
-      
-    if params[:sort_by] == 'title'
-      @title_header = 'hilite'
-      @movies = Movie.order(title: :asc)
-    elsif params[:sort_by] == 'release_date'
-      @release_date_header = 'hilite'
-      @movies = Movie.order(release_date: :asc)
-    end
-  else
-    @movies = Movie.all
-    @checked_ratings = []
-
-    if params[:sort_by] == 'title'
-      @title_header = 'hilite'
-      @movies = Movie.order(title: :asc)
-    elsif params[:sort_by] == 'release_date'
-      @release_date_header = 'hilite'
-      @movies = Movie.order(release_date: :asc)
-    end
-  end
   end
   
   
