@@ -25,14 +25,29 @@ class MoviesController < ApplicationController
     redirect = false 
 
     # clear up
+    # (1) Sorting 
     if params[:sort_by] 
       @sorting = params[sort_by]
     elsif session[:sort_by]
       @sorting = session[:sort_by]
       redirect = true 
+    else 
+      @sorting = nil 
     end
 
-  
+    # (2) Ratings 
+    if params[:ratings]
+      @checked_ratings = params[:ratings]
+    elsif session[:ratings]
+      @checked_ratings = session[:ratings]
+      redirect = true 
+    else
+      @checked_ratings = []
+    end
+      
+
+
+
   if params[:ratings]
     @movies = Movie.where(:rating => params[:ratings].keys)
     @checked_ratings = params[:ratings].keys
