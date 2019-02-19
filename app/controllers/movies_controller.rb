@@ -50,13 +50,13 @@ class MoviesController < ApplicationController
     # Checked movies/Sort by title 
     if @sorting and @rating
       # 1. Both sort/rating
-      @movies = Movie.where(:rating => @ratings.keys).find(:all, :order => @sorting)
+      @movies = Movie.where(:rating => params[:ratings].keys).find(:all, :order => @sorting)
     elsif @sorting
       # 2. Only sort 
         @movies = Movie.where(:all, :order => @sorting)
     elsif @rating
       # Only select checkboxed movies 
-      @movies = Movie.where(:rating => @ratings.keys)
+      @movies = Movie.where(:rating => params[:ratings].keys)
     else 
       # Otherwise just display 
       @movie = Movie.all 
