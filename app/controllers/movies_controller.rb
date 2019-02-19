@@ -37,6 +37,7 @@ class MoviesController < ApplicationController
     # (2) Ratings 
     if params[:ratings]
       @ratings = params[:ratings]
+      session[:ratings] = params[:ratings]
     elsif session[:ratings]
       @ratings = session[:ratings]
       redirect = true 
@@ -49,7 +50,7 @@ class MoviesController < ApplicationController
     end
 
 
-    if params[:ratings]
+    if @ratings
       # Only select checkboxed movies 
       @movies = Movie.where(:rating => @ratings.keys)
       @checked_ratings = @ratings.keys
@@ -57,6 +58,14 @@ class MoviesController < ApplicationController
       @movies = Movie.all
       @checked_ratings = []
     end
+
+
+
+
+
+
+
+
 
 
 
