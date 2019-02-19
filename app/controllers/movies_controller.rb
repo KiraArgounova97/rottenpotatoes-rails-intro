@@ -13,53 +13,52 @@ class MoviesController < ApplicationController
   
   # ===================================================================
   def index   
+
+  # Part1: Sort the column/highlight yellow =========================
+  # Part2: Filter the list of the movies ============================
+  # Part3: Remember the settings ====================================
+  
+  # 'ratings': Aggregate the values into a single hash
+  
     @movies = Movie.all  
     @all_ratings = Movie.all_ratings
-    
-  # Part1: Sort the column/highlight yellow =========================
-   if params[:sort_by] == 'title'
-    @title_header = 'hilite'
-    @movies = Movie.order(title: :asc)
-   elsif params[:sort_by] == 'release_date'
-    @release_date_header = 'hilite'
-    @movies = Movie.order(release_date: :asc)
-   end
+    redirect = false 
 
-    # Part2: Filter the list of the movies ===========================
-    # 'ratings': Aggregate the values into a single hash
-    if params[:ratings]
-      @movies = Movie.where(:rating => params[:ratings].keys)
-      @checked_ratings = params[:ratings].keys
-      
-      if params[:sort_by] == 'title'
-        @title_header = 'hilite'
-        @movies = Movie.order(title: :asc)
-      elsif params[:sort_by] == 'release_date'
-        @release_date_header = 'hilite'
-        @movies = Movie.order(release_date: :asc)
-      end
-
-    else
-      @movies = Movie.all
-      @checked_ratings = []
-
-      if params[:sort_by] == 'title'
-        @title_header = 'hilite'
-        @movies = Movie.order(title: :asc)
-      elsif params[:sort_by] == 'release_date'
-        @release_date_header = 'hilite'
-        @movies = Movie.order(release_date: :asc)
-      end
-
+    # clear up
+    if params[:sort_by] 
+      @sorting = params[sort_by]
+    elsif session[:sort_by]
+      @sorting = session[:sort_by]
+      redirect = true 
     end
+
+  
+  if params[:ratings]
+    @movies = Movie.where(:rating => params[:ratings].keys)
+    @checked_ratings = params[:ratings].keys
       
-      
-      
-      
-      
-      
-      
+    if params[:sort_by] == 'title'
+      @title_header = 'hilite'
+      @movies = Movie.order(title: :asc)
+    elsif params[:sort_by] == 'release_date'
+      @release_date_header = 'hilite'
+      @movies = Movie.order(release_date: :asc)
+    end
+  else
+    @movies = Movie.all
+    @checked_ratings = []
+
+    if params[:sort_by] == 'title'
+      @title_header = 'hilite'
+      @movies = Movie.order(title: :asc)
+    elsif params[:sort_by] == 'release_date'
+      @release_date_header = 'hilite'
+      @movies = Movie.order(release_date: :asc)
+    end
   end
+  end
+  
+  
 # ====================================================================
 
   def new
