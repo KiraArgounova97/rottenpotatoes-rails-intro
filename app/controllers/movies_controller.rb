@@ -53,7 +53,10 @@ class MoviesController < ApplicationController
       # Only select checkboxed movies 
       @movies = Movie.where(:rating => @ratings.keys)
       @checked_ratings = @rating.keys
-    end 
+    else
+      @movies = Movie.all
+      @checked_ratings = []
+    end
 
 
 
