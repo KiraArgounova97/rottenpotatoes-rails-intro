@@ -42,7 +42,7 @@ class MoviesController < ApplicationController
       @ratings = session[:ratings]
       redirect = true 
     else
-      @ratings = []
+      @ratings = nil 
     end
       
     if redirect 
@@ -50,7 +50,7 @@ class MoviesController < ApplicationController
     end
 
 
-    if params[:ratings]
+    if @ratings
       # Only select checkboxed movies 
       @movies = Movie.where(:rating => @ratings.keys)
       @checked_ratings = @ratings.keys
