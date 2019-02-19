@@ -19,6 +19,7 @@ class MoviesController < ApplicationController
   # Part3: Remember the settings ====================================
   
   # 'ratings': Aggregate the values into a single hash
+    @movies = Movie.all
     @all_ratings = Movie.all_ratings
     redirect = false 
 
@@ -50,13 +51,13 @@ class MoviesController < ApplicationController
     # Checked movies/Sort by title 
     if @sorting and @rating
       # 1. Both sort/rating
-      @movies = Movie.where(:rating => params[:ratings].keys).find(:all, :order => @sorting)
+      @movies = Movie.where(:rating => @ratings.keys).find(:all, :order => @sorting)
     elsif @sorting
       # 2. Only sort 
         @movies = Movie.where(:all, :order => @sorting)
     elsif @rating
       # Only select checkboxed movies 
-      @movies = Movie.where(:rating => params[:ratings].keys)
+      @movies = Movie.where(:rating => @ratings.keys)
     else 
       # Otherwise just display 
       @movie = Movie.all 
