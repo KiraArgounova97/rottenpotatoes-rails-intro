@@ -37,19 +37,17 @@ class MoviesController < ApplicationController
 
     # (2) Ratings 
     if params[:ratings]
-      @checked_ratings = params[:ratings]
+      @ratings = params[:ratings]
     elsif session[:ratings]
-      @checked_ratings = session[:ratings]
+      @ratings = session[:ratings]
       redirect = true 
     else
-      @checked_ratings = []
+      @ratings = []
     end
       
     if redirect 
       redirect_to movies_path(:sort_by => @sorting, :ratings => @ratings)
     end
-
-
 
 
 
