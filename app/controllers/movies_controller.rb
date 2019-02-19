@@ -52,16 +52,39 @@ class MoviesController < ApplicationController
   
     if @ratings and @sorting 
       
+      # Sort by title 
       if @sorting == 'title'
         @title_header = 'hilite'
         @movies = Movie.where(:rating => @ratings.keys).order(title: :asc)
         @checked_ratings = @ratings.keys 
       end
-  
+      # Sort by release date
+      if @sorting == 'release_date'
+        @release_date_header = 'hilite'
+        @movies = Movie.where(:rating => @ratings.keys).order(release_date: :asc)
+        @checked_ratings = @ratings.keys 
+      end
+
     elsif @ratings
       # Only select checkboxed movies 
       @movies = Movie.where(:rating => @ratings.keys)
       @checked_ratings = @ratings.keys
+    
+    elsif @sorting 
+      
+      # Sort by title 
+      if @sorting == 'title'
+        @title_header = 'hilite'
+        @movies = Movie.where(:rating => @ratings.keys).order(title: :asc)
+        @checked_ratings = @ratings.keys 
+      end
+      # Sort by release date
+      if @sorting == 'release_date'
+        @release_date_header = 'hilite'
+        @movies = Movie.where(:rating => @ratings.keys).order(release_date: :asc)
+        @checked_ratings = @ratings.keys 
+      end
+    
     else 
       @movies = Movie.all
       @checked_ratings = []
