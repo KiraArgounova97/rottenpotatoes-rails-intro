@@ -68,7 +68,6 @@ class MoviesController < ApplicationController
     else 
       # Otherwise just display 
       @movie = Movie.all 
-    
     end
     
   end
