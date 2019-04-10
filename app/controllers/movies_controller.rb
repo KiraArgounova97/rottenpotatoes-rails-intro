@@ -2,6 +2,7 @@ class MoviesController < ApplicationController
 
   # Movie parameter
   # Testing 
+  # A
   def movie_params
     params.require(:movie).permit(:title, :rating, :description, :release_date, :director)
   end
